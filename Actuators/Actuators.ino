@@ -5,11 +5,14 @@ SoftwareSerial LeftSholderSerial = SoftwareSerial(55, 3);
 SoftwareSerial RightElbowSerial = SoftwareSerial(56, 3);
 SoftwareSerial RightSholderSerial = SoftwareSerial(57, 3);
  
-// required to allow motors to move
-// must be called when controller restarts and after any error
+
 void exitSafeStart()
 {
   HeadSerial.write(0x83);
+  LeftElbowSerial.write(0x83);
+  LeftSholderSerial.write(0x83);
+  RightElbowSerial.write(0x83);
+  RightSholderSerial.write(0x83);
 }
 
 void Head(int speed){
@@ -88,6 +91,10 @@ void setup()
 {
   // initialize software serial object with baud rate of 19.2 kbps
   HeadSerial.begin(19200);
+  LeftElbowSerial.begin(19200);
+  LeftSholderSerial.begin(19200);
+  RightElbowSerial.begin(19200);
+  RightSholderSerial.begin(19200);
  
   // the Simple Motor Controller must be running for at least 1 ms
   // before we try to send serial data, so we delay here for 5 ms
@@ -97,6 +104,10 @@ void setup()
   // enabled, we first need to send it the byte 0xAA (170 in decimal)
   // so that it can learn the baud rate
   HeadSerial.write(0xAA);  // send baud-indicator byte
+  LeftElbowSerial.write(0xAA)
+  LeftSholderSerial.write(0xAA);
+  RightElbowSerial.write(0xAA);
+  RightSholderSerial.write(0xAA);
  
   // next we need to send the Exit Safe Start command, which
   // clears the safe-start violation and lets the motor run
@@ -105,8 +116,6 @@ void setup()
  
 void loop()
 {
-  Head(3200);  // full-speed forward
-  delay(1000);
-  Head(-3200);  // full-speed reverse
-  delay(1000);
+  // full-speed forward is 3200
+  // full-speed reverse is -3200
 }
