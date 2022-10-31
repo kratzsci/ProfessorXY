@@ -1,14 +1,32 @@
 #include <SoftwareSerial.h>
-#define rxPin 3
-#define txPin 42
-//Head is 42
-//Right Sholder is 40
+#include <SPI.h>
+#include <PS3BT.h>                                                    //Include the necessary libraries.
+#include <Servo.h>
+#include <SoftwareSerial.h>
+#include "RoboClaw.h"
+
 SoftwareSerial HeadSerial = SoftwareSerial(3, 42);
 SoftwareSerial RightSholderSerial = SoftwareSerial(3, 36);
 SoftwareSerial RightElbowSerial = SoftwareSerial(3, 32);
 SoftwareSerial LeftSholderSerial = SoftwareSerial(3, 24);
 SoftwareSerial LeftElbowSerial = SoftwareSerial(3, 22);
- 
+SoftwareSerial NeckSerial = SoftwareSerial(3,40);
+
+SoftwareSerial serial(14,15);
+RoboClaw roboclaw(&serial, 10000);
+#define address 0x80
+
+int HeadDirection = 0;
+int RightSholderDirection = 0;
+int RightElbowDirection = 0;
+int LeftSholderDirection = 0;
+int LeftElbowDirection = 0;
+int NeckDirection = 0;
+int DrivingDirection = 5;
+
+USB Usb;
+BTD Btd(&Usb);
+PS3BT PS3(&Btd);
 
 void exitSafeStart()
 {
@@ -17,6 +35,7 @@ void exitSafeStart()
   RightElbowSerial.write(0x83);
   LeftSholderSerial.write(0x83);
   LeftElbowSerial.write(0x83);
+  NeckSerial.write(0x83);
 }
 
 void Head(int speed){
@@ -31,6 +50,20 @@ void Head(int speed){
   }
   HeadSerial.write(speed & 0x1F);
   HeadSerial.write(speed >> 5);
+}
+
+void Neck(int speed){
+  if (speed < 0)
+  {
+    NeckSerial.write(0x86);  // motor reverse command
+    speed = -speed;  // make speed positive
+  }
+  else
+  {
+    NeckSerial.write(0x85);  // motor forward command
+  }
+  NeckSerial.write(speed & 0x1F);
+  NeckSerial.write(speed >> 5);
 }
 
 void RightSholder(int speed){
@@ -90,9 +123,35 @@ void LeftElbow(int speed){
   LeftElbowSerial.write(speed >> 5);
 }
 
-
+void Driving(int speed){
+  if (speed == 0){
+    roboclaw.BackwardM1(address,64);
+    roboclaw.BackwardM2(address,64);
+  }
+  else if(speed == 1){
+    roboclaw.ForwardM1(address,64);
+    roboclaw.ForwardM2(address,64);
+  }
+  else{
+    //nothing
+  }
+}
 void setup()
 {
+
+  Serial.begin(9600);
+  roboclaw.begin(38400);  
+
+   if (Usb.Init() == -1) 
+   {
+    Serial.print("OSC did not start");
+    Serial.println();
+    while (1); //halt
+   }
+
+  Serial.print("PS3 Bluetooth Library Started");
+  Serial.println();
+
   // initialize software serial object with baud rate of 19.2 kbps
   HeadSerial.begin(19200);
   RightSholderSerial.begin(19200);
@@ -124,71 +183,84 @@ void setup()
  
 void loop()
 {
-  //Elbow - negative extends actuator
-  //Sholder - negative extend actuator
-  int motor = random(0,8);
-  int timer = random (1000, 2000);
-  
-  Serial.print("Motor: ");
-  Serial.print(motor);
-  Serial.println();
-  Serial.print("Timer: ");
-  Serial.print(timer);
-  Serial.println();
-  
-  switch(motor){
-    case 0:
-      Head(3200);
-      delay(timer);
-      Head(-3200);
-      delay(timer);
-    break;
-    case 1:
-      LeftSholder(3200);
-      delay(timer);
-      LeftSholder(-3200);
-      delay(timer);
-    break;
-    case 2:
-      RightSholder(3200);
-      delay(timer);
-      RightSholder(-3200);
-      delay(timer);
-    break;
-    case 3:
-      LeftElbow(3200);
-      delay(timer);
-      LeftElbow(-3200);
-      delay(timer);
-    break;
-    case 4:
-      RightElbow(3200);
-      delay(timer);
-      RightElbow(-3200);
-      delay(timer);
-    break;
-    case 5:
-      Head(3200);
-      RightSholder(3200);
-      delay(timer);
-      Head(-3200);
-      RightSholder(-3200);
-      delay(timer);
-    break;
-    case 6:
-      RightSholder(3200);
-      LeftElbow(3200);
-      delay(timer);
-      RightSholder(-3200);
-      LeftElbow(-3200);
-    break;
-    case 7:
-      Head(3200);
-      LeftSholder(3200);
-      delay(timer);
-      Head(-3200);
-      LeftSholder(-3200);
-      delay(timer);
-    break;
+  Usb.Task();
+
+  /*-----------------------------------------*/
+  if(PS3.getButtonPress(CROSS)){
+    RightElbowDirection = -3200;
+  }  
+  else if(PS3.getButtonPress(TRIANGLE)){
+    RightElbowDirection = 3200;
   }
+  else{
+    RightElbowDirection = -3200;(0);
+  }
+  /*-----------------------------------------*/
+  if(PS3.getButtonPress(R1)){
+    RightSholderDirection = 3200;
+  } 
+  else if(PS3.getButtonPress(R2)){
+    RightSholderDirection = -3200;
+  }
+  else{
+    RightSholderDirection = 0;
+  }
+/*-----------------------------------------*/
+  if(PS3.getButtonPress(L1)){
+    LeftSholderDirection = 3200;
+  }  
+  else if(PS3.getButtonPress(L2)){
+    LeftSholderDirection = -3200;
+  }
+  else{
+    LeftSholderDirection = 0;
+  }
+/*-----------------------------------------*/
+  if(PS3.getButtonPress(UP)){
+    LeftElbowDirection = 3200;
+  } 
+  else if(PS3.getButtonPress(DOWN)){
+    LeftElbowDirection = -3200;
+  }
+  else{
+    LeftElbowDirection = 0;
+  }
+/*-----------------------------------------*/
+  if(PS3.getAnalogHat(RightHatX)< 125){
+    HeadDirection = 3200;
+  }
+  else if(PS3.getAnalogHat(RightHatX) > 130){
+    HeadDirection = -3200;
+  }
+  else{
+    HeadDirection = 0;
+  }
+/*-----------------------------------------*/
+  if(PS3.getAnalogHat(RightHatY)< 125){
+    NeckDirection = 3200;
+  }
+  else if(PS3.getAnalogHat(RightHatY) > 130){
+    NeckDirection = -3200;
+  }
+  else{
+    NeckDirection = 0;
+  }
+/*-----------------------------------------*/
+
+  if(PS3.getAnalogHat(LeftHatY) < 120){
+    DrivingDirection = 1; //Forward
+  }
+  else if(PS3.getAnalogHat(LeftHatY) > 135){
+    DrivingDirection = 0; //Backward
+  }
+  else{
+    DrivingDirection = 3;
+  }
+  Head(HeadDirection);
+  LeftSholder(LeftSholderDirection);
+  LeftElbow(LeftElbowDirection);
+  RightSholder(RightSholderDirection);
+  RightElbow(RightElbowDirection);
+  Neck(NeckDirection);
+  Driving(DrivingDirection);
 }
