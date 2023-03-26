@@ -3,10 +3,10 @@
 #define txPin 42
 //Head is 42
 //Right Sholder is 40
-SoftwareSerial HeadSerial = SoftwareSerial(3, 42);
-SoftwareSerial RightSholderSerial = SoftwareSerial(3, 36);
-SoftwareSerial RightElbowSerial = SoftwareSerial(3, 32);
-SoftwareSerial LeftSholderSerial = SoftwareSerial(3, 24);
+SoftwareSerial HeadSerial = SoftwareSerial(3, 39);
+SoftwareSerial RightSholderSerial = SoftwareSerial(3, 41);
+SoftwareSerial RightElbowSerial = SoftwareSerial(3, 43);
+SoftwareSerial LeftSholderSerial = SoftwareSerial(3, 53);
 SoftwareSerial LeftElbowSerial = SoftwareSerial(3, 22);
  
 
