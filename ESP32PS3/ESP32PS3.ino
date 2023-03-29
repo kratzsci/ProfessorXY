@@ -194,10 +194,13 @@ void onConnect(){
     Serial.println("Connected.");
 }
 
+#define TXD2 17
+#define RXD2 16
 void setup()
 {
     Serial.begin(115200);
-
+    Serial2.begin(9600, SERIAL_8N1, RXD2, TXD2);
+    Serial.println("SerialRxd is on pin: "+String(RX));
     Ps3.attach(notify);
     Ps3.attachOnConnect(onConnect);
     Ps3.begin("e8:48:b8:c8:20:00");
@@ -216,7 +219,7 @@ void loop()
 
     player += 1;
     if(player > 10) player = 0;
-
+    Serial2.print("ESP32 Transmitting...");
 
     //------ Digital cross/square/triangle/circle buttons ------
     if( Ps3.data.button.cross && Ps3.data.button.down )
