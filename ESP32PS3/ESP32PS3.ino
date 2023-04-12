@@ -219,8 +219,11 @@ void loop()
 
     player += 1;
     if(player > 10) player = 0;
-    Serial2.print("ESP32 Transmitting...");
-
+    if(Serial2.available()){
+      Serial2.print(1);
+      delay(150);
+    }
+    
     //------ Digital cross/square/triangle/circle buttons ------
     if( Ps3.data.button.cross && Ps3.data.button.down )
         Serial.println("Pressing both the down and cross buttons");

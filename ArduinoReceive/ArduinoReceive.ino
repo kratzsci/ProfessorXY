@@ -1,13 +1,16 @@
-void setup() {
-  // put your setup code here, to run once:
-  Serial.begin(115200);
+#include <SoftwareSerial.h>
+char received;
 
+void setup(){
+  Serial.begin(9600);
+  delay(100);
 }
 
-void loop() {
-  // put your main code here, to run repeatedly:
-  if(Serial.available()){
-    Serial.println(Serial.read());
+// Arduino Uno code to receive the message
+void loop(){
+  if(Serial.available()>0){
+    
+    received = Serial.read();
+    Serial.print(received);
   }
-
 }
