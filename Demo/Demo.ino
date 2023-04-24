@@ -3,12 +3,13 @@
 #define txPin 42
 //Head is 42
 //Right Sholder is 40
-SoftwareSerial HeadSerial = SoftwareSerial(3, 39);
-SoftwareSerial RightSholderSerial = SoftwareSerial(3, 41);
-SoftwareSerial RightElbowSerial = SoftwareSerial(3, 43);
-SoftwareSerial LeftSholderSerial = SoftwareSerial(3, 53);
-SoftwareSerial LeftElbowSerial = SoftwareSerial(3, 22);
- 
+
+SoftwareSerial HeadSerial = SoftwareSerial(3, 9);
+SoftwareSerial RightSholderSerial = SoftwareSerial(3, 7);
+SoftwareSerial RightElbowSerial = SoftwareSerial(3, 8);
+SoftwareSerial LeftSholderSerial = SoftwareSerial(3,27);
+SoftwareSerial LeftElbowSerial = SoftwareSerial(3,28);
+//Neck is 29
 
 void exitSafeStart()
 {
