@@ -8,7 +8,7 @@ Bluetooth to convey inputs to the Arduino controlling the actuators and motors.
 
 ## Components
 | Quantity  | Part |
-| ------------- | ------------- |
+| :-------------: | :-------------: |
 | 6 | Pololu 18v15 motor controller  |
 | 1 | Arduino Uno  |
 | 1 | 12V Battery |
