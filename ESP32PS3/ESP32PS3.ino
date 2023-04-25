@@ -63,13 +63,11 @@ void actions() {
     else if (Ps3.data.analog.stick.ly < -10){
         //Forward
         transmit = '1';
-    }
-    
+    }    
   }
   else {
     transmit = 0x00;
   }
-
 
   Serial.write(transmit);
 }
