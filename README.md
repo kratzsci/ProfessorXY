@@ -23,9 +23,9 @@ Bluetooth to convey inputs to the Arduino controlling the actuators and motors.
 
 
 ## Switch positions
-- Up: Charging \
-- Middle: Off \
-- Down: On
+- Up = Charging
+- Middle = Off
+- Down = On
 
 
 ## Running ProfessorX
@@ -36,7 +36,7 @@ Bluetooth to convey inputs to the Arduino controlling the actuators and motors.
 
 
 ## Charging ProfessorX
-1. Turn switch to charging position.
+1. Turn switch to Charging position.
 2. Verify red LED on Battery Charger is on, then it is in charging mode.
 
 
