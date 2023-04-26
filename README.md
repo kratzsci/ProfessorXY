@@ -23,8 +23,8 @@ Bluetooth to convey inputs to the Arduino controlling the actuators and motors.
 ## 
 
 ## Supporting Libraries/Drivers
-PS3 for ESP32 library: https://www.arduinolibraries.info/libraries/ps3-controller-host  
-MAC address of PS3 Controller: https://drive.google.com/file/d/1REzlr4g94jwLLZkhJq9sQmbUKnL9tOMD/view  
-Windows drivers for ESP32: https://www.silabs.com/developers/usb-to-uart-bridge-vcp-drivers?tab=downloads  
-  -Run the .inf file in main folder to install necessary  
-Roboclaw Library: https://www.basicmicro.com/downloads  
+1. PS3 for ESP32 library: https://www.arduinolibraries.info/libraries/ps3-controller-host  
+2. MAC address of PS3 Controller: https://drive.google.com/file/d/1REzlr4g94jwLLZkhJq9sQmbUKnL9tOMD/view  
+3. Windows drivers for ESP32: https://www.silabs.com/developers/usb-to-uart-bridge-vcp-drivers?tab=downloads  
+  -Run the .inf file in main folder to install necessary drivers  
+4. Roboclaw Library: https://www.basicmicro.com/downloads  
