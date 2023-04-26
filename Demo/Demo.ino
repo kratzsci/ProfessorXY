@@ -1,8 +1,6 @@
 #include <SoftwareSerial.h>
 #define rxPin 3
 #define txPin 42
-//Head is 42
-//Right Sholder is 40
 
 SoftwareSerial HeadSerial = SoftwareSerial(3, 9);
 SoftwareSerial RightSholderSerial = SoftwareSerial(3, 7);

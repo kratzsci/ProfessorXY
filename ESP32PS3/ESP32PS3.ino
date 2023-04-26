@@ -4,7 +4,7 @@ void onConnect() {
   Serial.println("Connected.");
 }
 
-char transmit;
+char transmit = 'P';
 
 void actions() {
   if ( abs(Ps3.event.analog_changed.button.triangle) ) {
@@ -63,13 +63,17 @@ void actions() {
     else if (Ps3.data.analog.stick.ly < -10){
         //Forward
         transmit = '1';
-    }    
+    }
+    else{
+      transmit = 'P';
+    }
   }
   else {
-    transmit = 0x00;
+    transmit = 'P';
   }
-
-  Serial.write(transmit);
+  if(transmit != 'P'){
+    Serial.write(transmit);
+  }
 }
 
 

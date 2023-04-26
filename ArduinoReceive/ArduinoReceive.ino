@@ -5,27 +5,18 @@
 #include <SoftwareSerial.h>
 #include "RoboClaw.h"
 
-char received;
-
-SoftwareSerial HeadSerial = SoftwareSerial(3, 7);
+SoftwareSerial HeadSerial = SoftwareSerial(3, 9);
 SoftwareSerial RightSholderSerial = SoftwareSerial(3, 7);
-SoftwareSerial RightElbowSerial = SoftwareSerial(3, 7);
-SoftwareSerial LeftSholderSerial = SoftwareSerial(3, 7);
-SoftwareSerial LeftElbowSerial = SoftwareSerial(3, 7);
-SoftwareSerial NeckSerial = SoftwareSerial(3, 7);
+SoftwareSerial RightElbowSerial = SoftwareSerial(3, 8);
+SoftwareSerial LeftSholderSerial = SoftwareSerial(3, 27);
+SoftwareSerial LeftElbowSerial = SoftwareSerial(3, 28);
+SoftwareSerial NeckSerial = SoftwareSerial(3, 29);
 //S1 -- D3
 //S2 -- D4
-SoftwareSerial serial(3, 4);
+SoftwareSerial serial(10, 11);
 RoboClaw roboclaw(&serial, 10000);
 #define address 0x80
 
-int HeadDirection = 0;
-int RightSholderDirection = 0;
-int RightElbowDirection = 0;
-int LeftSholderDirection = 0;
-int LeftElbowDirection = 0;
-int NeckDirection = 0;
-int DrivingDirection = 5;
 
 void exitSafeStart()
 {
@@ -38,6 +29,7 @@ void exitSafeStart()
 }
 
 void Head(int speed) {
+  Serial.println("Head");
   if (speed < 0)
   {
     HeadSerial.write(0x86);  // motor reverse command
@@ -52,6 +44,7 @@ void Head(int speed) {
 }
 
 void Neck(int speed) {
+  Serial.println("Neck");
   if (speed < 0)
   {
     NeckSerial.write(0x86);  // motor reverse command
@@ -66,6 +59,7 @@ void Neck(int speed) {
 }
 
 void RightSholder(int speed) {
+  Serial.println("RightSholder");
   if (speed < 0)
   {
     RightSholderSerial.write(0x86);  // motor reverse command
@@ -80,6 +74,7 @@ void RightSholder(int speed) {
 }
 
 void RightElbow(int speed) {
+  Serial.println("RightElbow");
   if (speed < 0)
   {
     RightElbowSerial.write(0x86);  // motor reverse command
@@ -89,12 +84,15 @@ void RightElbow(int speed) {
   {
     RightElbowSerial.write(0x85);  // motor forward command
   }
+
+
   RightElbowSerial.write(speed & 0x1F);
   RightElbowSerial.write(speed >> 5);
 }
 
 
 void LeftSholder(int speed) {
+  Serial.println("LeftSholder");
   if (speed < 0)
   {
     LeftSholderSerial.write(0x86);  // motor reverse command
@@ -104,11 +102,13 @@ void LeftSholder(int speed) {
   {
     LeftSholderSerial.write(0x85);  // motor forward command
   }
+
   LeftSholderSerial.write(speed & 0x1F);
   LeftSholderSerial.write(speed >> 5);
 }
 
 void LeftElbow(int speed) {
+  Serial.println("LeftElbow");
   if (speed < 0)
   {
     LeftElbowSerial.write(0x86);  // motor reverse command
@@ -118,51 +118,57 @@ void LeftElbow(int speed) {
   {
     LeftElbowSerial.write(0x85);  // motor forward command
   }
+
   LeftElbowSerial.write(speed & 0x1F);
   LeftElbowSerial.write(speed >> 5);
 }
 
 void Driving(int speed) {
   switch (speed) {
+    case 0:
+      //Stop
+      roboclaw.ForwardM1(address, 0);
+      roboclaw.ForwardM2(address, 0);
+      break;
     case 1:
-      //Forward
-      roboclaw.ForwardM1(address, 64);
-      roboclaw.ForwardM2(address, 64);
+      //Backward
+      roboclaw.BackwardM1(address, 127);
+      roboclaw.BackwardM2(address, 127);
       break;
     case 2:
-      //Backward
-      roboclaw.BackwardM1(address, 64);
-      roboclaw.BackwardM2(address, 64);
+      //Forward
+      roboclaw.ForwardM1(address, 127);
+      roboclaw.ForwarM2(address, 127);
       break;
     case 3:
       //Left
       roboclaw.ForwardM1(address, 0);
-      roboclaw.ForwardM2(address, 64);
+      roboclaw.ForwardM2(address, 127);
       break;
     case 4:
       //Right
-      roboclaw.ForwardM1(address, 64);
+      roboclaw.ForwardM1(address, 127);
       roboclaw.ForwardM2(address, 0);
       break;
     case 5:
       //Forward Right
-      roboclaw.ForwardM1(address, 64);
-      roboclaw.ForwardM2(address, 32);
+      roboclaw.ForwardM1(address, 127);
+      roboclaw.ForwardM2(address, 64);
       break;
     case 6:
       //Forward Left
-      roboclaw.ForwardM1(address, 32);
-      roboclaw.ForwardM2(address, 64);
+      roboclaw.ForwardM1(address, 64);
+      roboclaw.ForwardM2(address, 127);
       break;
     case 7:
       //Backward Right
-      roboclaw.BackwardM1(address, 32);
-      roboclaw.BackwardM2(address, 64);
+      roboclaw.BackwardM1(address, 64);
+      roboclaw.BackwardM2(address, 127);
       break;
     case 8:
       //Backward Left
-      roboclaw.BackwardM1(address, 64);
-      roboclaw.BackwardM2(address, 32);
+      roboclaw.BackwardM1(address, 127);
+      roboclaw.BackwardM2(address, 64);
       break;
   }
 }
@@ -200,106 +206,159 @@ void setup() {
 
 // Arduino Uno code to receive the message
 void loop() {
-  if (Serial.available() > 0) {
+  char received = 'p';
+
+  while (Serial.available() > 0) {
     received = Serial.read();
   }
+  //Serial.flush();
+  int timer = 100;
 
   switch (received) {
     case 'T':
       //Right Elbow = 3200
       RightElbow(3200);
+      delay(timer);
+      RightElbow(0);
       Serial.println("T");
       break;
     case 'X':
       //Right Elbow = -3200
       RightElbow(-3200);
+      delay(timer);
+      RightElbow(0);
       Serial.println("X");
       break;
     case 'S':
       //Right Sholder = 3200
       RightSholder(3200);
+      delay(timer);
+      RightSholder(0);
       Serial.println("S");
       break;
     case 'C':
       //Right Sholder = -3200
       RightSholder(-3200);
+      delay(timer);
+      RightSholder(0);
       Serial.println("C");
       break;
     case 'L':
       //Left Shodler = 3200
       LeftSholder(3200);
+      delay(timer);
+      LeftSholder(0);
       Serial.println("L");
       break;
     case 'R':
       //Left Sholder = -3200
       LeftSholder(-3200);
+      delay(timer);
+      LeftSholder(0);
       Serial.println("R");
       break;
     case 'U':
       //Left Elbow = 3200
       LeftElbow(3200);
+      delay(timer);
+      LeftElbow(0);
       Serial.println("U");
       break;
     case 'D':
       //Left Elbow = -3200
       LeftElbow(-3200);
+      delay(timer);
+      LeftElbow(0);
       Serial.println("D");
       break;
     case '1':
       //Forward
       Driving(1);
+      delay(timer);
+      Driving(0);
       Serial.println("Forward");
       break;
     case '2':
       //Backward
       Driving(2);
+      delay(timer);
+      Driving(0);
       Serial.println("Backward");
       break;
     case '3':
       //Left
       Driving(3);
+      delay(timer);
+      Driving(0);
       Serial.println("Left");
       break;
     case '4':
       //Right
       Driving(4);
+      delay(timer);
+      Driving(0);
       Serial.println("Right");
       break;
     case '5':
       //Forward Right
       Driving(5);
+      delay(timer);
+      Driving(0);
       Serial.println("Forward Right");
       break;
     case '6':
       //Forward Left
       Driving(6);
+      delay(timer);
+      Driving(0);
       Serial.println("Forward Left");
       break;
     case '7':
       //Backward Right
       Driving(7);
+      delay(timer);
+      Driving(0);
       Serial.println("Backward Right");
       break;
     case '8':
       //Backward Left
       Driving(8);
+      delay(timer);
+      Driving(0);
       Serial.println("Backward Left");
       break;
-    case 'A':
+    case 'U':
       //Head Up
+      Head(3200);
+      delay(timer);
+      Head(0);
       Serial.println("Head Up");
       break;
-    case 'B':
+    case 'D':
       //Head Down
+      Head(-3200);
+      delay(timer);
+      Head(0);
       Serial.println("Head Down");
       break;
-    case 'E':
+    case 'L':
       //Neck Left
+      Neck(-3200);
+      delay(timer);
+      Neck(0);
       Serial.println("Neck Left");
       break;
-    case 'F':
+    case 'R':
       //Neck Right
+      Neck(3200);
+      delay(timer);
+      Neck(0);
       Serial.println("Neck Right");
+      break;
+    default:
+      delay(timer);
+
+      Serial.println("Default");
       break;
   }
 }
