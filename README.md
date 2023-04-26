@@ -9,13 +9,13 @@ Bluetooth to convey inputs to the Arduino controlling the actuators and motors.
 
 ## Re-design
 ### Battery
-1. Two 12v -> One 12v
+- Two 12v -> One 12v
 ### Motors
-1. 24v -> 12v
+- 24v -> 12v
 ### Charging
-1. Extension cord
+- Extension cord
 ### Switch
-1. On, Off, and charging mode
+- On, Off, and charging mode
 ### Tighten mechanical parts
 1. Straighted up the body
 2. Fixed misaligned wheels
@@ -23,9 +23,9 @@ Bluetooth to convey inputs to the Arduino controlling the actuators and motors.
 
 
 ## Switch positions
-### Up: Charging
-### Middle: Off
-### Down: On
+- Up: Charging \
+- Middle: Off \
+- Down: On
 
 
 ## Running ProfessorX
