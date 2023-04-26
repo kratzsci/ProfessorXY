@@ -7,17 +7,19 @@ run on only one battery and the motors would be swapped to 12V equivalents. The 
 Bluetooth to convey inputs to the Arduino controlling the actuators and motors.
 
 ## Components
-| Quantity  | Part |
+| Quantity  | Component |
 | :-------------: | :-------------: |
-| 6 | Pololu 18v15 motor controller  |
-| 1 | Arduino Uno  |
+| 1 | Arduino Mega 2560  |
 | 1 | 12V Battery |
 | 1 | Battery Charger |
-| 6 | Actuators |
 | 1 | ESP32 Development Module |
+| 1 | Roboclaw 2x60A |
+| 6 | Pololu 18v15 motor controller  |
+| 6 | Concentric LACT2 Actuator |
 
 ## Schematic
 ![Schematic](/Images/Schematic.png?raw=true "Optional Title")
+
 ## 
 
 ## Supporting Libraries/Drivers
