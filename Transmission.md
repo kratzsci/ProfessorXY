@@ -1,4 +1,4 @@
-# Transmittion from ESP32 to Arduino
+# Transmission from ESP32 to Arduino
 
 ### NULL
 P = NULL
@@ -10,7 +10,7 @@ S = Square \
 C = Circle
 
 ### Directional buttons
-L = Left \ 
+L = Left \
 R = Right \
 U = Up \
 D = Down 
@@ -19,11 +19,11 @@ D = Down
 Left analog stick, ly = y-axis, lx = x-axis \
 Right analog stick, ry = y-axis, rx = x-axis 
 
-Backward Right = 8 \
-Backward Left = 7 \
-Forward Right = 6 \
-Forward Left = 5 \
-Left = 4 \
-Right = 3 \
+Forward = 1 \
 Backward = 2 \
-Forward = 1 
+Right = 3 \
+Left = 4 \
+Forward Left = 5 \
+Forward Right = 6 \
+Backward Left = 7 \
+Backward Right = 8
