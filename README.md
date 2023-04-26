@@ -17,7 +17,7 @@ Bluetooth to convey inputs to the Arduino controlling the actuators and motors.
 | 1 | ESP32 Development Module |
 
 ## Schematic
-
+![Schematic](/Images/Schematic.png?raw=true "Optional Title")
 ## 
 
 ## Supporting Libraries/Drivers
