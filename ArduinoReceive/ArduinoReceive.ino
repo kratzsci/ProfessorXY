@@ -138,7 +138,7 @@ void Driving(int speed) {
     case 2:
       //Forward
       roboclaw.ForwardM1(address, 127);
-      roboclaw.ForwarM2(address, 127);
+      roboclaw.ForwardM2(address, 127);
       break;
     case 3:
       //Left
@@ -243,34 +243,34 @@ void loop() {
       RightSholder(0);
       Serial.println("C");
       break;
-    case 'L':
-      //Left Shodler = 3200
-      LeftSholder(3200);
-      delay(timer);
-      LeftSholder(0);
-      Serial.println("L");
-      break;
-    case 'R':
-      //Left Sholder = -3200
-      LeftSholder(-3200);
-      delay(timer);
-      LeftSholder(0);
-      Serial.println("R");
-      break;
-    case 'U':
-      //Left Elbow = 3200
-      LeftElbow(3200);
-      delay(timer);
-      LeftElbow(0);
-      Serial.println("U");
-      break;
-    case 'D':
-      //Left Elbow = -3200
-      LeftElbow(-3200);
-      delay(timer);
-      LeftElbow(0);
-      Serial.println("D");
-      break;
+     case 'L':
+       //Left Shodler = 3200
+       LeftSholder(3200);
+       delay(timer);
+       LeftSholder(0);
+       Serial.println("L");
+       break;
+     case 'R':
+       //Left Sholder = -3200
+       LeftSholder(-3200);
+       delay(timer);
+       LeftSholder(0);
+       Serial.println("R");
+       break;
+    // case 'U':
+    //   //Left Elbow = 3200
+    //   LeftElbow(3200);
+    //   delay(timer);
+    //   LeftElbow(0);
+    //   Serial.println("U");
+    //   break;
+    // case 'D':
+    //   //Left Elbow = -3200
+    //   LeftElbow(-3200);
+    //   delay(timer);
+    //   LeftElbow(0);
+    //   Serial.println("D");
+    //   break;
     case '1':
       //Forward
       Driving(1);
@@ -341,20 +341,20 @@ void loop() {
       Head(0);
       Serial.println("Head Down");
       break;
-    case 'L':
-      //Neck Left
-      Neck(-3200);
-      delay(timer);
-      Neck(0);
-      Serial.println("Neck Left");
-      break;
-    case 'R':
-      //Neck Right
-      Neck(3200);
-      delay(timer);
-      Neck(0);
-      Serial.println("Neck Right");
-      break;
+//    case 'L':
+//      //Neck Left
+//      Neck(-3200);
+//      delay(timer);
+//      Neck(0);
+//      Serial.println("Neck Left");
+//      break;
+//    case 'R':
+//      //Neck Right
+//      Neck(3200);
+//      delay(timer);
+//      Neck(0);
+//      Serial.println("Neck Right");
+//      break;
     default:
       delay(timer);
 

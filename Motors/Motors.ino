@@ -1,9 +1,12 @@
 #include <SoftwareSerial.h>
+#include <SPI.h>
+#include <PS3BT.h>                                                    //Include the necessary libraries.
+#include <Servo.h>
+#include <SoftwareSerial.h>
 #include "RoboClaw.h"
 
-SoftwareSerial serial(10,11);
+SoftwareSerial serial(3, 4);
 RoboClaw roboclaw(&serial, 10000);
-
 #define address 0x80
 
 void Driving(int speed) {
@@ -50,13 +53,15 @@ void Driving(int speed) {
       break;
   }
 }
+
 void setup() {
   roboclaw.begin(38400);
 }
 
-void loop() {
-  for(int i=0; i<=8; i++){
-    Driving(i);
-    delay(2000);
-  }
+void loop(){
+    for(int i=0; i<=8; i++){
+        Driving(i);
+        Serial.println(i);
+        delay(2000);
+    }
 }
