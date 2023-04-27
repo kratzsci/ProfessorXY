@@ -37,6 +37,10 @@ void actions() {
   if( Ps3.event.button_up.select){
     transmit = 'B';
   }
+  // PS button, upon release of the button
+  if( Ps3.event.button_up.ps){
+    transmit = 'E';
+  }
   // Shape buttons
   if ( abs(Ps3.event.analog_changed.button.triangle) ) {
     transmit = 'T';
@@ -63,6 +67,7 @@ void actions() {
   else if ( abs(Ps3.event.analog_changed.button.down) ) {
     transmit = 'D';
   }
+  // Right analog stick, ry = y-axis, rx = x-axis
   // Left analog stick, ly = y-axis, lx = x-axis
   else if ( abs(Ps3.event.analog_changed.stick.lx) + abs(Ps3.event.analog_changed.stick.ly) > 2 ) {
     // Declare and read x and y axis

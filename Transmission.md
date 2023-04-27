@@ -4,11 +4,12 @@ E, F, G, H, I, J, K, O, Q, V, W, Y, Z, Zero (0)
 
 | **Character** | **Controller Command** |
 |     :---: |       :---:        |
-| NULL |
+| **NULL** |
 | `P` | NULL |
 | **Menu buttons** |
 | `A` | Start |
 | `B` | Select |
+| `E` | PS |
 | **Shape buttons** |
 | `T` | Triangle |
 | `X` | Cross |
@@ -20,8 +21,6 @@ E, F, G, H, I, J, K, O, Q, V, W, Y, Z, Zero (0)
 | `U` | Up |
 | `D` | Down |
 | **Analog sticks** |
-| Left analog stick | ly = y-axis, lx = x-axis |
-| Right analog stick | ry = y-axis, rx = axis |
 | `1` | Forward |
 | `2` | Backward |
 | `3` | Right |

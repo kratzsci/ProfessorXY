@@ -206,6 +206,10 @@ void controller(int received) {
       mode = 1;
       delay(100);
       break;
+    case 'E':               // PS button
+      mode = 2;
+      delay(100);
+      break;
     case 'U':               // Head up
       Head(3200);
       Head(0);
@@ -316,6 +320,10 @@ void demo(int received){
       mode = 1;
       delay(100);
       break;
+    case 'E':               // PS button
+      mode = 2;
+      delay(100);
+      break;
     default:
       Serial.println("Mode switch not chosen.");
       break;
@@ -385,6 +393,108 @@ void demo(int received){
   }
 }
 
+void DrivingSimple(int speed) {
+  switch (speed) {
+    case 0:
+      // Stop
+      Serial.println("Stop Driving");
+      roboclaw.ForwardM1(address, 0);
+      roboclaw.ForwardM2(address, 0);
+      break;
+    case 1:
+      // Backward
+      Serial.println("Drive backward");
+      roboclaw.BackwardM1(address, 127);
+      roboclaw.BackwardM2(address, 127);
+      break;
+    case 2:
+      // Forward
+      Serial.println("Drive forward");
+      roboclaw.ForwardM1(address, 127);
+      roboclaw.ForwardM2(address, 127);
+      break;
+    case 3:
+      // Left pivot
+      Serial.println("Pivot left");
+      roboclaw.ForwardM1(address, 0);
+      roboclaw.ForwardM2(address, 127);
+      break;
+    case 4:
+      // Right pivot
+      Serial.println("Pivot right");
+      roboclaw.ForwardM1(address, 127);
+      roboclaw.ForwardM2(address, 0);
+      break;
+    case 5:
+      // Left turn in place
+      Serial.println("Left turn in place");
+      roboclaw.ForwardM1(address, 64);
+      roboclaw.BackwardM2(address, 64);
+      break;
+    case 6:
+      // Right turn in place
+      Serial.println("Right turn in place");
+      roboclaw.BackwardM1(address, 64);
+      roboclaw.ForwardM2(address, 64);
+      break;
+  }
+  delay(timer);
+}
+
+void controllerDrive(int received) {
+  Serial.println("Remote control mode");
+  switch (received) {
+    case 'A':               // Start button
+      mode = 0;
+      delay(100);
+      break;
+    case 'B':               // Select button
+      mode = 1;
+      delay(100);
+      break;
+    case 'E':               // PS button
+      mode = 2;
+      delay(100);
+      break;
+    default:
+      Serial.println("Mode switch not chosen.");
+      break;
+  }
+
+  switch (received) {
+    case '1':               // Drive forward
+      DrivingSimple(1);
+      DrivingSimple(0);
+      break;
+    case '2':               // Drive backward
+      DrivingSimple(2);
+      DrivingSimple(0);
+      break;
+
+    case '3':               // Left pivot
+      DrivingSimple(3);
+      DrivingSimple(0);
+      break;
+    case '4':               // Right pivot
+      DrivingSimple(4);
+      DrivingSimple(0);
+      break;
+
+    case '5':               // Left turn in place
+      DrivingSimple(5);
+      DrivingSimple(0);
+      break;
+    case '6':               // Right turn in place
+      DrivingSimple(6);
+      DrivingSimple(0);
+      break;
+
+    default:
+      Serial.println("Case not defined");
+      break;
+  }
+}
+
 void setup() {
   Serial.begin(9600);
   roboclaw.begin(38400);
@@ -430,6 +540,9 @@ void loop() {
   }
   else if (mode == 1 && received != 'p') {
     demo(received);
+  }
+  else if(mode == 2 && received != 'p'){
+    controllerDrive(received);
   }
   else{
     Serial.println("No mode, or received null");
