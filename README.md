@@ -21,7 +21,7 @@ Bluetooth to convey inputs to the Arduino controlling the actuators and motors.
 3. Checked every joint
 
 # Contorl
-#### Switch positions
+### Switch positions
 - Up = Charging
 - Middle = Off
 - Down = On
