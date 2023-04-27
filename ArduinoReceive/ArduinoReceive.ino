@@ -316,7 +316,7 @@ void controller(int received) {
 }
 
 void demo(int received) {
-  Serial.println("Demo mode");
+  Serial.println("Demo mode.");
   int motor = random(0, 8);
   int timerRan = (random(1000, 2000) - timer);
 
@@ -458,7 +458,7 @@ void DrivingSimple(int speed) {
 }
 
 void controllerDrive(int received) {
-  Serial.println("Remote control mode");
+  Serial.println("Remote control mode: Simple Driving");
   switch (received) {
     case 'A':               // Start button
       mode = 0;

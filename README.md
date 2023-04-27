@@ -27,16 +27,17 @@ Bluetooth to convey inputs to the Arduino controlling the actuators and motors.
 - Down = On
 
 
-## Running ProfessorX
+### Running ProfessorX
 1. Turn switch from Off position to On position.
 2. Wait for approximately 10 seconds.
 3. Connect controller.
 4. You should now be able to move the robot. 
 
 
-## Charging ProfessorX
-1. Turn switch to Charging position.
-2. Verify red LED on Battery Charger is on, then it is in charging mode.
+### Charging ProfessorX
+1. Plug in extension cord. 
+2. Turn switch to Charging position.
+3. Verify red LED on Battery Charger is on, then it is in charging mode.
 
 
 # Components
