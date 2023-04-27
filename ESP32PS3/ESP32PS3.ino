@@ -29,20 +29,23 @@ void actions() {
   int maxThrehold = 40;
   int minThreshold = 10;
 
-  // Start button, upon release of the button
-  if( Ps3.event.button_up.start){
+  // Start button, upon press of the button
+  // alt Ps3.data.button.start
+  if( Ps3.event.button_down.start){
     transmit = 'A';
   }
-  // Select button, upon release of the button
-  if( Ps3.event.button_up.select){
+  // Select button, upon press of the button
+  // alt Ps3.data.button.select
+  else if( Ps3.event.button_down.select){
     transmit = 'B';
   }
-  // PS button, upon release of the button
-  if( Ps3.event.button_up.ps){
+  // PS button, upon press of the button
+  // alt Ps3.data.button.ps
+  else if( Ps3.event.button_down.ps){
     transmit = 'E';
   }
   // Shape buttons
-  if ( abs(Ps3.event.analog_changed.button.triangle) ) {
+  else if ( abs(Ps3.event.analog_changed.button.triangle) ) {
     transmit = 'T';
   }
   else if ( abs(Ps3.event.analog_changed.button.cross) ) {
@@ -130,7 +133,6 @@ void setup()
   Serial.println("Ready.");
   Ps3.setPlayer(1);
 }
-
 
 
 void loop()

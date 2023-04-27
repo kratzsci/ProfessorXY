@@ -191,6 +191,9 @@ void Driving(int speed) {
       roboclaw.BackwardM1(address, 127);
       roboclaw.BackwardM2(address, 64);
       break;
+    default:
+      Serial.println("Driving: No drive case.");
+      break;
   }
   delay(timer);
 }
@@ -210,6 +213,12 @@ void controller(int received) {
       mode = 2;
       delay(100);
       break;
+    default:
+      Serial.println("Demo: Mode error.");
+      break;
+  }
+  
+  switch (received) {
     case 'U':               // Head up
       Head(3200);
       Head(0);
@@ -219,14 +228,14 @@ void controller(int received) {
       Head(0);
       break;
 
-  //  case 'L':               // Neck left
-  //    Neck(-3200);
-  //    Neck(0);
-  //    break;
-  //  case 'R':               // Neck right
-  //    Neck(3200);
-  //    Neck(0);
-  //    break;
+    //  case 'L':               // Neck left
+    //    Neck(-3200);
+    //    Neck(0);
+    //    break;
+    //  case 'R':               // Neck right
+    //    Neck(3200);
+    //    Neck(0);
+    //    break;
 
     case 'S':               // Right shoulder up
       RightSholder(3200);
@@ -247,13 +256,13 @@ void controller(int received) {
       break;
 
     case 'L':               // Left shoulder up
-       LeftSholder(3200);
-       LeftSholder(0);
-       break;
-     case 'R':               // Left shoulder up
-       LeftSholder(-3200);
-       LeftSholder(0);
-       break;
+      LeftSholder(3200);
+      LeftSholder(0);
+      break;
+    case 'R':               // Left shoulder up
+      LeftSholder(-3200);
+      LeftSholder(0);
+      break;
 
     // case 'U':               // Left elbow up
     //   LeftElbow(3200);
@@ -301,14 +310,14 @@ void controller(int received) {
       break;
 
     default:
-      Serial.println("Nothing in buffer");
+      Serial.println("Controller: No movement case.");
       break;
   }
 }
 
-void demo(int received){
+void demo(int received) {
   Serial.println("Demo mode");
-  int motor = random(0,8);
+  int motor = random(0, 8);
   int timerRan = (random(1000, 2000) - timer);
 
   switch (received) {
@@ -325,45 +334,45 @@ void demo(int received){
       delay(100);
       break;
     default:
-      Serial.println("Mode switch not chosen.");
+      Serial.println("Demo: Mode error.");
       break;
   }
 
-  switch(motor) {
+  switch (motor) {
     case 0:
       Head(3200);
       delay(timerRan);
       Head(-3200);
       delay(timerRan);
-    break;
+      break;
 
     case 1:
       LeftSholder(3200);
       delay(timerRan);
       LeftSholder(-3200);
       delay(timerRan);
-    break;
+      break;
 
     case 2:
       RightSholder(3200);
       delay(timerRan);
       RightSholder(-3200);
       delay(timerRan);
-    break;
+      break;
 
     case 3:
       LeftElbow(3200);
       delay(timerRan);
       LeftElbow(-3200);
       delay(timerRan);
-    break;
+      break;
 
     case 4:
       RightElbow(3200);
       delay(timerRan);
       RightElbow(-3200);
       delay(timerRan);
-    break;
+      break;
 
     case 5:
       Head(3200);
@@ -372,7 +381,7 @@ void demo(int received){
       Head(-3200);
       RightSholder(-3200);
       delay(timerRan);
-    break;
+      break;
 
     case 6:
       RightSholder(3200);
@@ -380,7 +389,7 @@ void demo(int received){
       delay(timerRan);
       RightSholder(-3200);
       LeftElbow(-3200);
-    break;
+      break;
 
     case 7:
       Head(3200);
@@ -389,7 +398,11 @@ void demo(int received){
       Head(-3200);
       LeftSholder(-3200);
       delay(timerRan);
-    break;
+      break;
+
+    default:
+      Serial.println("Demo: No movement case.");
+      break;
   }
 }
 
@@ -437,6 +450,9 @@ void DrivingSimple(int speed) {
       roboclaw.BackwardM1(address, 64);
       roboclaw.ForwardM2(address, 64);
       break;
+    default:
+      Serial.println("Driving Simple: No drive case.");
+      break;
   }
   delay(timer);
 }
@@ -457,7 +473,7 @@ void controllerDrive(int received) {
       delay(100);
       break;
     default:
-      Serial.println("Mode switch not chosen.");
+      Serial.println("Controller drive: Mode error.");
       break;
   }
 
@@ -490,7 +506,7 @@ void controllerDrive(int received) {
       break;
 
     default:
-      Serial.println("Case not defined");
+      Serial.println("Controller drive: No drive case.");
       break;
   }
 }
@@ -533,18 +549,23 @@ void loop() {
     received = Serial.read();
   }
 
-  // Mode switching - Controller and Demo mode
+  // Mode switching - Controller, Demo, and Contrl drive mode
   // Default is controller mode
-  if (mode == 0 && received != 'p'){
+  if (mode == 0 && received != 'p') {
     controller(received);
   }
   else if (mode == 1 && received != 'p') {
     demo(received);
   }
-  else if(mode == 2 && received != 'p'){
+  else if (mode == 2 && received != 'p') {
     controllerDrive(received);
   }
-  else{
-    Serial.println("No mode, or received null");
+  else {
+    if (received == 'p') {
+      Serial.println("Received null.");
+    }
+    else {
+      Serial.println("Mode Error.");
+    }
   }
 }
