@@ -1,6 +1,14 @@
 # Transmission from ESP32 to Arduino
 Remaining Characters:
 E, F, G, H, I, J, K, O, Q, V, W, Y, Z, Zero (0)
+
+| Character | Controller Command |
+|     :---: |       :---:        |
+| 'P' | NULL |
+| Menu buttons |
+| 'A' | Start |
+| 'B' | Select |
+
 ### NULL
 P = NULL
 
