@@ -1,7 +1,7 @@
 #include <SoftwareSerial.h>
 #include <SPI.h>
 #include <PS3BT.h>                                                    //Include the necessary libraries.
-#include <Servo.h>
+// #include <Servo.h>
 #include <SoftwareSerial.h>
 #include "RoboClaw.h"
 
@@ -16,7 +16,7 @@ SoftwareSerial NeckSerial = SoftwareSerial(3, 29);
 SoftwareSerial serial(10, 11);
 RoboClaw roboclaw(&serial, 10000);
 #define address 0x80
-int timer 100         // 100ms
+int timer = 100;      // 100ms
 int mode = 0;         // default to ps control mode
 
 
@@ -429,7 +429,7 @@ void loop() {
     controller(received);
   }
   else if (mode == 1 && received != 'p') {
-    demo(received)
+    demo(received);
   }
   else{
     Serial.println("No mode, or received null");
