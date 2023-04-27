@@ -1,6 +1,4 @@
 #include <SoftwareSerial.h>
-#define rxPin 3
-#define txPin 42
 
 SoftwareSerial HeadSerial = SoftwareSerial(3, 9);
 SoftwareSerial RightSholderSerial = SoftwareSerial(3, 7);
