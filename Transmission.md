@@ -38,7 +38,7 @@ I, J, K, O, Q, V, W, Y, Zero (0)
 # Robot commands
 
 | **Character** | **Robot Command** | **Button** |
-|     :---: |       :---:        |
+|     :---:     |       :---:       |   :---:    |
 | **Mode** |
 | `A` | Limb mode | Start |
 | `B` | Simple drive mode | Select |
