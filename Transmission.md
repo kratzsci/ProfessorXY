@@ -37,7 +37,7 @@ I, J, K, O, Q, V, W, Y, Zero (0)
 
 # Robot commands
 
-| **Character** | **Robot Command** | **Button** |
+| **Character** | **Robot Command** | **Buttons** |
 |     :---:     |       :---:       |   :---:    |
 | **Mode** |
 | `A` | Limb mode | Start |
@@ -56,8 +56,8 @@ I, J, K, O, Q, V, W, Y, Zero (0)
 | `C` | Right elbow down | Circle |
 | **Bumper/Trigger** |
 | `E` | Left shoulder up | Left Bumper |
-| `F` | Left shoulder down | Right Bumper |
-| `G` | Right shoulder up | Left Trigger |
+| `F` | Left shoulder down | Left Trigger |
+| `G` | Right shoulder up | Right Bumper |
 | `H` | Right shoulder down | Right Trigger |
 | **Analog sticks** |
 | `1` | Forward |
