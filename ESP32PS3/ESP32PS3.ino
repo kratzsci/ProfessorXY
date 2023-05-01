@@ -36,43 +36,64 @@ void actions() {
   }
   // Select button, upon press of the button
   // alt Ps3.data.button.select
-  else if( Ps3.event.button_down.select){
+  if( Ps3.event.button_down.select){
     transmit = 'B';
   }
   // PS button, upon press of the button
   // alt Ps3.data.button.ps
-  else if( Ps3.event.button_down.ps){
-    transmit = 'E';
+  if( Ps3.event.button_down.ps){
+    transmit = 'Z';
   }
+
   // Shape buttons
-  else if ( abs(Ps3.event.analog_changed.button.triangle) ) {
+  if (abs(Ps3.event.analog_changed.button.triangle)) {
     transmit = 'T';
   }
-  else if ( abs(Ps3.event.analog_changed.button.cross) ) {
+  if (abs(Ps3.event.analog_changed.button.cross)) {
     transmit = 'X';
   }
-  else if ( abs(Ps3.event.analog_changed.button.square) ) {
+  if (abs(Ps3.event.analog_changed.button.square)) {
     transmit = 'S';
   }
-  else if ( abs(Ps3.event.analog_changed.button.circle) ) {
+  if (abs(Ps3.event.analog_changed.button.circle)) {
     transmit = 'C';
   }
-  //Directional buttons
-  else if ( abs(Ps3.event.analog_changed.button.left) ) {
+
+  // Directional buttons
+  if (abs(Ps3.event.analog_changed.button.left)) {
     transmit = 'L';
   }
-  else if ( abs(Ps3.event.analog_changed.button.right) ) {
+  if (abs(Ps3.event.analog_changed.button.right)) {
     transmit = 'R';
   }
-  else if ( abs(Ps3.event.analog_changed.button.up) ) {
+  if (abs(Ps3.event.analog_changed.button.up)) {
     transmit = 'U';
   }
-  else if ( abs(Ps3.event.analog_changed.button.down) ) {
+  if (abs(Ps3.event.analog_changed.button.down)) {
     transmit = 'D';
   }
+
+  // Bumper left
+  if (abs(Ps3.event.analog_changed.button.l1)) {
+    transmit = 'E';
+  }
+  // Trigger left
+  if (abs(Ps3.event.analog_changed.button.l2)) {
+    transmit = 'F';
+  }
+
+  // Bumper right
+  if (abs(Ps3.event.analog_changed.button.r1)) {
+    transmit = 'G';
+  }
+  // Trigger right 
+  if (abs(Ps3.event.analog_changed.button.r2)) {
+    transmit = 'H';
+  }
+
   // Right analog stick, ry = y-axis, rx = x-axis
   // Left analog stick, ly = y-axis, lx = x-axis
-  else if ( abs(Ps3.event.analog_changed.stick.lx) + abs(Ps3.event.analog_changed.stick.ly) > 2 ) {
+  if ( abs(Ps3.event.analog_changed.stick.lx) + abs(Ps3.event.analog_changed.stick.ly) > 2 ) {
     // Declare and read x and y axis
     int leftAxis = filterJoystick(Ps3.data.analog.stick.ly);
     int rightAxis = filterJoystick(Ps3.data.analog.stick.lx);
@@ -109,12 +130,6 @@ void actions() {
         //Forward
         transmit = '1';
     }
-    else{
-      transmit = 'P';   // Since variable declared to the char = 'p' this is un-needed
-    }
-  }
-  else {
-    transmit = 'P';     // Since variable declared  to the char = 'p' this is un-needed
   }
   if(transmit != 'P'){
     Serial.write(transmit);

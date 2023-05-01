@@ -20,7 +20,7 @@ Bluetooth to convey inputs to the Arduino controlling the actuators and motors.
 2. Fixed misaligned wheels
 3. Checked every joint
 
-# Contorl
+# Control
 ### Switch positions
 - Up = Charging
 - Middle = Off
