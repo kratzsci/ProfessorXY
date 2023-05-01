@@ -36,7 +36,6 @@ I, J, K, O, Q, V, W, Y, Zero (0)
 
 
 # Robot commands
-
 | **Character** | **Robot Command** | **Buttons** |
 |     :---:     |       :---:       |   :---:    |
 | **Mode** |
