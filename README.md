@@ -13,7 +13,7 @@ Bluetooth to convey inputs to the Arduino controlling the actuators and motors.
 5. Run the installed *SixAxisPairTool*
 6. The *SixAxisPairTool* will display the MAC address for the controller (save for later)
 
-### Update ESP32 code
+### Udate ESP32 code
 1. Open the ESP32PS3.ino file
 2. Go to the setup function
 3. Find the line starting with *Ps3.begin*
@@ -52,9 +52,9 @@ Bluetooth to convey inputs to the Arduino controlling the actuators and motors.
      - Red blinking LED indicates battery not connected
 
 ### Switch positions
-  - Up = Charging
+  - Left = Charging
   - Middle = Off
-  - Down = On
+  - Right = On
 
 # Design overview
 ### Re-design
