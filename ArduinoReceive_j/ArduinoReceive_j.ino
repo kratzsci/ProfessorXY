@@ -16,7 +16,7 @@ SoftwareSerial NeckSerial = SoftwareSerial(3, 29);
 SoftwareSerial serial(10, 11);
 RoboClaw roboclaw(&serial, 10000);
 #define address 0x80
-int timer = 100;
+int timer = 500;
 
 
 void exitSafeStart()
@@ -218,9 +218,9 @@ int modeControl(char command, int mode){
 }
 
 void simpleDrive(char command) {
-  Serial.println("Simple Driving");
+//  Serial.println("Simple Driving");
   int Speed = 64;   // 0-127
-  int Turn = 64;
+  int Turn = 127;
   int Stop = 0;
 
   // Drive the robot with the directional pad
@@ -231,23 +231,23 @@ void simpleDrive(char command) {
   }
   if (command == 'U') {
     Serial.println("Drive Forward");
-    roboclaw.ForwardM1(address, Speed);
-    roboclaw.ForwardM2(address, Speed);
+    roboclaw.BackwardM1(address, Speed);
+    roboclaw.BackwardM2(address, Speed);
   }
   if (command == 'L') {
     Serial.println("Turn Left");
-    roboclaw.ForwardM1(address, Turn);
-    roboclaw.BackwardM2(address, Turn);
+    roboclaw.BackwardM1(address, Stop);
+    roboclaw.ForwardM2(address, Turn);
   }
   if (command == 'R') {
     Serial.println("Turn Right");
-    roboclaw.BackwardM1(address, Turn);
-    roboclaw.ForwardM2(address, Turn);
+    roboclaw.ForwardM1(address, Stop);
+    roboclaw.BackwardM2(address, Turn);
   }
 }
 
 void Limb(char command){
-  Serial.println("Limb control.");
+//  Serial.println("Limb control.");
   int speed = 3200;
   int stop = 0;
   int forward = 0x85;
@@ -291,7 +291,7 @@ void Limb(char command){
     LeftElbowSerial.write(speed >> 5);
   }
   // Left elbow down
-  if (command == 'X') {
+  if (command == 'C') {
     Serial.println("Left Elbow down");
     LeftElbowSerial.write(reverse);       // motor command
     LeftElbowSerial.write(speed & 0x1F);
@@ -306,7 +306,7 @@ void Limb(char command){
     RightElbowSerial.write(speed >> 5);
   }
   // Right elbow down
-  if (command == 'C') {
+  if (command == 'X') {
     Serial.println("Right Elbow down");
     RightElbowSerial.write(reverse);       // motor command
     RightElbowSerial.write(speed & 0x1F);
@@ -381,26 +381,30 @@ void loop() {
   //Serial reading
   if (Serial.available() > 0) {
     command = Serial.read();
-  }
+  
+  // simpleDrive(command);
+  Limb(command);
+  // Demo();
 
-  // Controls the mode of the robot
-  mode = modeControl(command, mode);
-
-  // Limb move mode - Start button
-  // Move the arms and head
-  if (mode == 0) {
-    Limb(command);
-  }
-  // Simple drive mode - Select button
-  // Driving with the directional pad
-  if (mode == 1) {
-    simpleDrive(command);
-  }
-  // Demo mode - PS button
-  // Randomly moves arms for demonstration
-  if (mode == 2) {
-    Demo();
-  }
   command = ' ';
+  }
   delay(5);
+  // Controls the mode of the robot
+  // mode = modeControl(command, mode);
+  
+  // Limb move mode - Share button
+  // Move the arms and head
+// if (mode == 0) {
+//   Limb(command);
+// }
+ // Simple drive mode - Options button
+ // Driving with the directional pad
+// if (mode == 1) {
+//   simpleDrive(command);
+// }
+//  // Demo mode - PS button
+//  // Randomly moves arms for demonstration
+//  if (mode == 2) {
+//    Demo();
+//  }
 }
