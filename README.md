@@ -79,7 +79,7 @@ In addition to improving the electrical aspects we ensured that the mechanical a
 
 
 # Schematic
-![Schematic](/Images/Schematic.png?raw=true "Optional Title")
+![Schematic](/References/Schematic.png?raw=true "Optional Title")
 
 
 # Supporting Libraries/Drivers
