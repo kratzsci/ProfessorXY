@@ -88,3 +88,10 @@ In addition to improving the electrical aspects we ensured that the mechanical a
 3. Windows drivers for ESP32: https://www.silabs.com/developers/usb-to-uart-bridge-vcp-drivers?tab=downloads  
      - Run the .inf file in main folder to install necessary drivers  
 4. Roboclaw Library: https://www.basicmicro.com/downloads  
+
+# Future Development
+1. Replace eye LEDs
+2. Replace eyebrow servos
+3. Wire and integrated eyes and eyebrows
+4. Create custom PCB for organization of wires and boards
+5. Create mounting plate for all control boards, for easy management
