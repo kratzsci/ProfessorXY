@@ -1,69 +1,35 @@
 # Transmission from ESP32 to Arduino
 Remaining Characters:
 I, J, K, O, Q, V, W, Y, Zero (0)
-
-| **Character** | **Controller Command** |
-|     :---: |       :---:        |
-| **Menu buttons** |
-| `A` | Start |
-| `B` | Select |
-| `Z` | PS |
-| **Shape buttons** |
-| `T` | Triangle |
-| `X` | Cross |
-| `S` | Square |
-| `C` | Circle |
-| **Directional buttons** |
-| `L` | Left |
-| `R` | Right |
-| `U` | Up |
-| `D` | Down |
-| **Bumpers** |
-| `E` | Left Bumper |
-| `F` | Right Bumper |
-| **Triggers** |
-| `G` | Left Trigger |
-| `H` | Right Trigger |
-| **Analog sticks** |
-| `1` | Forward |
-| `2` | Backward |
-| `3` | Right |
-| `4` | Left |
-| `5` | Forward Left |
-| `6` | Forward Right |
-| `7` | Backward Left |
-| `8` | Backward Right |
-
-
 # Robot commands
-| **Character** | **Robot Command** | **Buttons** |
+| **Buttons** | **Robot Command** | **Character transmitted** |
 |     :---:     |       :---:       |   :---:    |
-| **Mode** |
-| `A` | Limb mode | Start |
-| `B` | Simple drive mode | Select |
-| `Z` | Demo mode | PS |
-| **Head** |
-| `U` | Head Up | Up |
-| `D` | Head Down | Down |
-| **Neck** |
-| `L` | Neck Left | Left |
-| `R` | Neck Right | Right |
-| **Shape buttons** |
-| `T` | Left elbow up | Triangle |
-| `X` | Left elbow down | Cross |
-| `S` | Right elbow up | Square |
-| `C` | Right elbow down | Circle |
-| **Bumper/Trigger** |
-| `E` | Left shoulder up | Left Bumper |
-| `F` | Left shoulder down | Left Trigger |
-| `G` | Right shoulder up | Right Bumper |
-| `H` | Right shoulder down | Right Trigger |
-| **Analog sticks** |
-| `1` | Forward |
-| `2` | Backward |
-| `3` | Right |
-| `4` | Left |
-| `5` | Forward Left |
-| `6` | Forward Right |
-| `7` | Backward Left |
-| `8` | Backward Right |
+| --- | **Mode** | --- |
+| Start | Limb mode | `A` |
+| Select | Simple drive mode | `B` |
+| PS | Demo mode | `Z` |
+| --- | **Head** | --- |
+| Up | Head Up | `U` |
+| Down | Head Down | `D` |
+| --- | **Neck** | --- |
+| Left | Neck Left | `L` |
+| Right | Neck Right | `R` |
+| --- | **Shape buttons** | --- |
+| Triangle | Left elbow up | `T` |
+| Cross | Left elbow down | `X` |
+| Square | Right elbow up | `S` |
+| Circle | Right elbow down | `C` |
+| --- | **Bumper/Trigger** | --- |
+| Left Bumper | Left shoulder up | `E` |
+| Left Trigger | Left shoulder down | `F` |
+| Right Bumper | Right shoulder up | `G` |
+| Right Trigger | Right shoulder down | `H` |
+| --- | **Analog sticks** | --- |
+|  | Forward | `1` |
+|  | Backward | `2` |
+|  | Right | `3` |
+|  | Left | `4` |
+|  | Forward Left | `5` |
+|  | Forward Right | `6` |
+|  | Backward Left | `7` |
+|  | Backward Right | `8` |
