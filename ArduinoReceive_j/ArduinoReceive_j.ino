@@ -217,130 +217,132 @@ int modeControl(char command, int mode){
   return mode;
 }
 
-void simpleDrive(char command) {
-//  Serial.println("Simple Driving");
-  int Speed = 64;   // 0-127
+void robotControl(char command){
+  Serial.println("Robot Control.");
+  int speedL = 3200;
+  int stop = 0;
+  int forward = 0x85;
+  int reverse = 0x86;
+  
+  int speedD = 64;   // 0-127
   int Turn = 127;
   int Stop = 0;
 
   // Drive the robot with the directional pad
-  if (command == 'D') {
+  if (command == '0') {
     Serial.println("Stop Driving");
     roboclaw.ForwardM1(address, Stop);
     roboclaw.ForwardM2(address, Stop);
   }
-  if (command == 'U') {
+  else if (command == '1') {
     Serial.println("Drive Forward");
-    roboclaw.BackwardM1(address, Speed);
-    roboclaw.BackwardM2(address, Speed);
+    roboclaw.ForwardM1(address, speedD);
+    roboclaw.ForwardM2(address, speedD);
   }
-  if (command == 'L') {
+  else if (command == '4') {
     Serial.println("Turn Left");
-    roboclaw.BackwardM1(address, Stop);
-    roboclaw.ForwardM2(address, Turn);
-  }
-  if (command == 'R') {
-    Serial.println("Turn Right");
     roboclaw.ForwardM1(address, Stop);
     roboclaw.BackwardM2(address, Turn);
   }
-}
-
-void Limb(char command){
-//  Serial.println("Limb control.");
-  int speed = 3200;
-  int stop = 0;
-  int forward = 0x85;
-  int reverse = 0x86;
-
+  else if (command == '3') {
+    Serial.println("Turn Right");
+    roboclaw.BackwardM1(address, Stop);
+    roboclaw.ForwardM2(address, Turn);
+  }
+  else if (command == '2') {
+    Serial.println("Drive Backward");
+    roboclaw.BackwardM1(address, speedD);
+    roboclaw.BackwardM2(address, speedD);
+  }
+  
   // Head up
-  if (command == 'U') {
+  else if (command == 'U') {
     Serial.println("Head up");
     HeadSerial.write(forward);          // motor command
-    HeadSerial.write(speed & 0x1F);     // Send the low-order 5 bits of the speed value
-    HeadSerial.write(speed >> 5);       // Shift the speed value 5 bits to the right and send the resulting value
+    HeadSerial.write(speedL & 0x1F);     // Send the low-order 5 bits of the speed value
+    HeadSerial.write(speedL >> 5);       // Shift the speed value 5 bits to the right and send the resulting value
   }
   // Head down
-  if (command == 'D') {
+  else if (command == 'D') {
     Serial.println("Head down");
     HeadSerial.write(reverse);          // motor command
-    HeadSerial.write(speed & 0x1F);     // Send the low-order 5 bits of the speed value
-    HeadSerial.write(speed >> 5);       // Shift the speed value 5 bits to the right and send the resulting value
+    HeadSerial.write(speedL & 0x1F);     // Send the low-order 5 bits of the speed value
+    HeadSerial.write(speedL >> 5);       // Shift the speed value 5 bits to the right and send the resulting value
   }
 
   // Neck left
-  if (command == 'L') {
+  else if (command == 'L') {
     Serial.println("Neck left");
     NeckSerial.write(reverse);          // motor command
-    NeckSerial.write(speed & 0x1F);
-    NeckSerial.write(speed >> 5);
+    NeckSerial.write(speedL & 0x1F);
+    NeckSerial.write(speedL >> 5);
   }
   // Neck right
-  if (command == 'R') {
+  else if (command == 'R') {
     Serial.println("Neck right");
     NeckSerial.write(forward);          // motor command
-    NeckSerial.write(speed & 0x1F);
-    NeckSerial.write(speed >> 5);
+    NeckSerial.write(speedL & 0x1F);
+    NeckSerial.write(speedL >> 5);
   }
 
   // Left elbow up
-  if (command == 'T') {
+  else if (command == 'T') {
     Serial.println("Left Elbow up");
     LeftElbowSerial.write(forward);       // motor command
-    LeftElbowSerial.write(speed & 0x1F);
-    LeftElbowSerial.write(speed >> 5);
+    LeftElbowSerial.write(speedL & 0x1F);
+    LeftElbowSerial.write(speedL >> 5);
   }
   // Left elbow down
-  if (command == 'C') {
+  else if (command == 'C') {
     Serial.println("Left Elbow down");
     LeftElbowSerial.write(reverse);       // motor command
-    LeftElbowSerial.write(speed & 0x1F);
-    LeftElbowSerial.write(speed >> 5);
+    LeftElbowSerial.write(speedL & 0x1F);
+    LeftElbowSerial.write(speedL >> 5);
   }
 
   // Right elbow up
-  if (command == 'S') {
+  else if (command == 'S') {
     Serial.println("Right Elbow up");
     RightElbowSerial.write(forward);       // motor command
-    RightElbowSerial.write(speed & 0x1F);
-    RightElbowSerial.write(speed >> 5);
+    RightElbowSerial.write(speedL & 0x1F);
+    RightElbowSerial.write(speedL >> 5);
   }
   // Right elbow down
-  if (command == 'X') {
+  else if (command == 'X') {
     Serial.println("Right Elbow down");
     RightElbowSerial.write(reverse);       // motor command
-    RightElbowSerial.write(speed & 0x1F);
-    RightElbowSerial.write(speed >> 5);
+    RightElbowSerial.write(speedL & 0x1F);
+    RightElbowSerial.write(speedL >> 5);
   }
 
   // Left shoulder up
-  if (command == 'E') {
+  else if (command == 'E') {
     Serial.println("Left Shoulder up");
     LeftShoulderSerial.write(forward);     // motor command
-    LeftShoulderSerial.write(speed & 0x1F);
-    LeftShoulderSerial.write(speed >> 5);
+    LeftShoulderSerial.write(speedL & 0x1F);
+    LeftShoulderSerial.write(speedL >> 5);
   }
   // Left shoulder down
-  if (command == 'F') {
+  else if (command == 'F') {
     Serial.println("Left Shoulder down");
     LeftShoulderSerial.write(reverse);     // motor command
-    LeftShoulderSerial.write(speed & 0x1F);
-    LeftShoulderSerial.write(speed >> 5);
+    LeftShoulderSerial.write(speedL & 0x1F);
+    LeftShoulderSerial.write(speedL >> 5);
   }
 
   // Right shoulder up
-  if (command == 'G') {
+  else if (command == 'G') {
     Serial.println("Right Shoulder up");
     RightShoulderSerial.write(forward);     // motor command
-    RightShoulderSerial.write(speed & 0x1F);
-    RightShoulderSerial.write(speed >> 5);
+    RightShoulderSerial.write(speedL & 0x1F);
+    RightShoulderSerial.write(speedL >> 5);
   }
   // Right shoulder down
-  if (command == 'H') {
+  else if (command == 'H') {
     Serial.println("Right Shoulder down");
     RightShoulderSerial.write(reverse);     // motor command
-    RightShoulderSerial.write(speed & 0x1F);
-    RightShoulderSerial.write(speed >> 5);
+    RightShoulderSerial.write(speedL & 0x1F);
+    RightShoulderSerial.write(speedL >> 5);
   }
 }
 
@@ -381,12 +383,14 @@ void loop() {
   //Serial reading
   if (Serial.available() > 0) {
     command = Serial.read();
+    Serial.println(command);
+    robotControl(command);
+    
+    // simpleDrive(command);
+    // Limb(command);
+    // Demo();
   
-  // simpleDrive(command);
-  Limb(command);
-  // Demo();
-
-  command = ' ';
+    command = ' ';
   }
   delay(5);
   // Controls the mode of the robot
