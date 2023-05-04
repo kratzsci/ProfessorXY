@@ -31,6 +31,7 @@ I, J, K, O, Q, V, W
 | ----- | ----- | ------ |
 | **Stop Driving** | ----- | ----- |
 | Analog sticks center | Stop driving | `0` |
+| ----- | ----- | ------ |
 | **Left Analog sticks** | ----- | ----- |
 | ----- | Forward | `1` |
 | ----- | Backward | `2` |
