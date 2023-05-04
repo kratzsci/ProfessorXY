@@ -221,12 +221,12 @@ void robotControl(char command) {
   int Stop = 0;
 
   // Full stop: No button pressed or Manual button pressed
-  if (command == '9' || command == 'Y') {
-    fullStop();
-  }
+//  if (command == '9' || command == 'Y') {
+//    fullStop();
+//  }
 
   // Stop driving the robot
-  else if (command == '0') {
+  if (command == '0') {
     Serial.println("Stop Driving");
     roboclaw.ForwardM1(address, Stop);
     roboclaw.ForwardM2(address, Stop);

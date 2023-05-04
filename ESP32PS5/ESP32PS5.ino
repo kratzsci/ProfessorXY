@@ -26,7 +26,7 @@ void actions() {
   // Touch Pad button
   else if (ps5.Touchpad()) {
     Serial.println("\nTouch Pad");
-    transmit = 'Y'
+    transmit = 'Y';
   } 
 
   // Shape buttons
@@ -94,11 +94,11 @@ void actions() {
     Serial.println("\nBackward");
     transmit = '2';
   }
-  else if (ps5.LStickX() > 64 && ps5.LStickY() => -90 && ps5.LStickY() =< 90){
+  else if (ps5.LStickX() > 64 && ps5.LStickY() >= -90 && ps5.LStickY() <= 90){
     Serial.println("\nTurn Right");
     transmit = '3';
   }
-  else if (ps5.LStickX() < -64 && ps5.LStickY() => -90 && ps5.LStickY() =< 90){
+  else if (ps5.LStickX() < -64 && ps5.LStickY() >= -90 && ps5.LStickY() <= 90){
     Serial.println("\nTurn Left");
     transmit = '4';
   }
@@ -112,22 +112,22 @@ void actions() {
     Serial.println("\nHead Down");
     transmit = '6';
   }
-  else if (ps5.RStickX() < -64 && ps5.RStickY() => -90 && ps5.RStickY() =< 90){
+  else if (ps5.RStickX() < -64 && ps5.RStickY() >= -90 && ps5.RStickY() <= 90){
     Serial.println("\nNeck Left");
     transmit = '7';
   }
-  else if (ps5.RStickX() > 64 && ps5.RStickY() => -90 && ps5.RStickY() =< 90){
+  else if (ps5.RStickX() > 64 && ps5.RStickY() >= -90 && ps5.RStickY() <= 90){
     Serial.println("\nNeck Right");
     transmit = '8';
   }
 
   // Stop moving the robot when left analog stick is in center region
-  else if (ps5.LStickX() =< -64 && ps5.LStickX() =< 64 && ps5.LStickY() =< -64 && ps5.LStickY() =< 64){
+  else if (ps5.LStickX() <= -64 && ps5.LStickX() <= 64 && ps5.LStickY() <= -64 && ps5.LStickY() <= 64){
     Serial.println("\nStop moving robot");
     transmit = '0';
   }
   // Stop moving head or neck when the right analog stick is in center region
-  else if (ps5.RStickX() =< -64 && ps5.RStickX() =< 64 && ps5.RStickY() =< -64 && ps5.RStickY() =< 64){
+  else if (ps5.RStickX() <= -64 && ps5.RStickX() <= 64 && ps5.RStickY() <= -64 && ps5.RStickY() <= 64){
     Serial.println("\nStop moving the head/neck");
     transmit = 'I';
   }
