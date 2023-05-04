@@ -228,7 +228,7 @@ void robotControl(char command){
   int Turn = 127;
   int Stop = 0;
 
-  // Drive the robot with the directional pad
+  // Drive the robot with the analog sticks
   if (command == '0') {
     Serial.println("Stop Driving");
     roboclaw.ForwardM1(address, Stop);
@@ -239,35 +239,35 @@ void robotControl(char command){
     roboclaw.ForwardM1(address, speedD);
     roboclaw.ForwardM2(address, speedD);
   }
-  else if (command == '4') {
-    Serial.println("Turn Left");
-    roboclaw.ForwardM1(address, Stop);
-    roboclaw.BackwardM2(address, Turn);
+  else if (command == '2') {
+    Serial.println("Drive Backward");
+    roboclaw.BackwardM1(address, speedD);
+    roboclaw.BackwardM2(address, speedD);
   }
   else if (command == '3') {
     Serial.println("Turn Right");
     roboclaw.BackwardM1(address, Stop);
     roboclaw.ForwardM2(address, Turn);
   }
-  else if (command == '2') {
-    Serial.println("Drive Backward");
-    roboclaw.BackwardM1(address, speedD);
-    roboclaw.BackwardM2(address, speedD);
+  else if (command == '4') {
+    Serial.println("Turn Left");
+    roboclaw.ForwardM1(address, Stop);
+    roboclaw.BackwardM2(address, Turn);
   }
-  
+
   // Head up
   else if (command == 'U') {
     Serial.println("Head up");
     HeadSerial.write(forward);          // motor command
-    HeadSerial.write(speedL & 0x1F);     // Send the low-order 5 bits of the speed value
-    HeadSerial.write(speedL >> 5);       // Shift the speed value 5 bits to the right and send the resulting value
+    HeadSerial.write(speedL & 0x1F);    // Send the low-order 5 bits of the speed value
+    HeadSerial.write(speedL >> 5);      // Shift the speed value 5 bits to the right and send the resulting value
   }
   // Head down
   else if (command == 'D') {
     Serial.println("Head down");
     HeadSerial.write(reverse);          // motor command
-    HeadSerial.write(speedL & 0x1F);     // Send the low-order 5 bits of the speed value
-    HeadSerial.write(speedL >> 5);       // Shift the speed value 5 bits to the right and send the resulting value
+    HeadSerial.write(speedL & 0x1F);    // Send the low-order 5 bits of the speed value
+    HeadSerial.write(speedL >> 5);      // Shift the speed value 5 bits to the right and send the resulting value
   }
 
   // Neck left
