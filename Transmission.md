@@ -1,6 +1,5 @@
 # Transmission from ESP32 to Arduino
-Remaining Characters:
-J, K, O, Q, V, W
+
 # Robot commands
 | **Buttons** | **Robot Command** | **Character transmitted** |
 |     :---:     |       :---:       |   :---:    |
@@ -9,18 +8,18 @@ J, K, O, Q, V, W
 | Start | UNBOUND | `A` |
 | Select | UNBOUND | `B` |
 | PS | UNBOUND | `Z` |
-| Touch Pad | Manual Full Stop | `Y` |
+| Touch Pad | UNBOUND | `Y` |
 | ----- | ----- | ------ |
 | **Directional Buttons** | ----- | ----- |
-| Up | Left elbow up | `U` |
-| Left | Left shoulder stop | `L` |
-| Right | Left elbow stop | `R` |
-| Down | Left elbow down | `D` |
+| Up | Head up | `U` |
+| Left | Neck left | `L` |
+| Right | Neck right | `R` |
+| Down | Head down | `D` |
 | ----- | ----- | ------ |
 | **Shape buttons** | ----- | ----- |
-| Triangle | Right elbow up | `T` |
-| Square | Right shoulder stop | `S` |
-| Circle | Right elbow stop | `C` |
+| Triangle | Left elbow up | `T` |
+| Square | Right elbow up | `S` |
+| Circle | Left elbow down | `C` |
 | Cross | Right elbow down | `X` |
 | ----- | ----- | ------ |
 | **Bumper/Trigger** | ----- | ----- |
@@ -29,21 +28,14 @@ J, K, O, Q, V, W
 | Right Bumper | Right shoulder up | `G` |
 | Right Trigger | Right shoulder down | `H` |
 | ----- | ----- | ------ |
-| **Stop Driving** | ----- | ----- |
-| Left Analog sticks center | Stop driving | `0` |
-| ----- | ----- | ------ |
-| **Stop Head/Neck** | ----- | ----- |
-| Right Analog sticks center | Stop moving Head/Neck | `I` |
+| **Stop all** | ----- | ----- |
+| Left Analog sticks center | Stop all | `0` |
 | ----- | ----- | ------ |
 | **Left Analog sticks** | ----- | ----- |
 | ----- | Forward | `1` |
 | ----- | Backward | `2` |
 | ----- | Right | `3` |
 | ----- | Left | `4` |
-| **Right Analog sticks** | ----- | ----- |
-| ----- | Head up | `5` |
-| ----- | Head down | `6` |
-| ----- | Neck left | `7` |
-| ----- | Neck right | `8` |
-| **Full stop** | ----- | ----- |
-| No button is pressed | Full Stop | `9` |
+| ----- | ----- | ------ |
+| **Stop all** | ----- | ----- |
+| Left Analog sticks center | Stop all | `0` |
