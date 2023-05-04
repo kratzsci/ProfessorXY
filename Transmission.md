@@ -1,6 +1,6 @@
 # Transmission from ESP32 to Arduino
 Remaining Characters:
-I, J, K, O, Q, V, W
+J, K, O, Q, V, W
 # Robot commands
 | **Buttons** | **Robot Command** | **Character transmitted** |
 |     :---:     |       :---:       |   :---:    |
@@ -13,14 +13,14 @@ I, J, K, O, Q, V, W
 | ----- | ----- | ------ |
 | **Directional Buttons** | ----- | ----- |
 | Up | Left elbow up | `U` |
-| Left | UNBOUND | `L` |
-| Right | UNBOUND | `R` |
+| Left | Left shoulder stop | `L` |
+| Right | Left elbow stop | `R` |
 | Down | Left elbow down | `D` |
 | ----- | ----- | ------ |
 | **Shape buttons** | ----- | ----- |
 | Triangle | Right elbow up | `T` |
-| Square | UNBOUND | `S` |
-| Circle | UNBOUND | `C` |
+| Square | Right shoulder stop | `S` |
+| Circle | Right elbow stop | `C` |
 | Cross | Right elbow down | `X` |
 | ----- | ----- | ------ |
 | **Bumper/Trigger** | ----- | ----- |
@@ -30,7 +30,10 @@ I, J, K, O, Q, V, W
 | Right Trigger | Right shoulder down | `H` |
 | ----- | ----- | ------ |
 | **Stop Driving** | ----- | ----- |
-| Analog sticks center | Stop driving | `0` |
+| Left Analog sticks center | Stop driving | `0` |
+| ----- | ----- | ------ |
+| **Stop Head/Neck** | ----- | ----- |
+| Right Analog sticks center | Stop moving Head/Neck | `I` |
 | ----- | ----- | ------ |
 | **Left Analog sticks** | ----- | ----- |
 | ----- | Forward | `1` |

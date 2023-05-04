@@ -225,7 +225,7 @@ void robotControl(char command) {
     fullStop();
   }
 
-  // Stop moving the robot
+  // Stop driving the robot
   else if (command == '0') {
     Serial.println("Stop Driving");
     roboclaw.ForwardM1(address, Stop);
@@ -270,12 +270,22 @@ void robotControl(char command) {
     neckDown(speedL);
   }
 
+  // Stop moving the Head/Neck
+  else if (command == 'I') {
+    headUp(stop);
+    neckUp(stop);
+  }
+
   // Left elbow
   else if (command == 'U') {
     leftElbowUp(speedL);
   }
   else if (command == 'D') {
     leftElbowDown(speedL);
+  }
+  // Left elbow stop
+  else if (command == 'R') {
+    leftElbowUp(stop);
   }
 
   // Right elbow
@@ -285,6 +295,10 @@ void robotControl(char command) {
   else if (command == 'X') {
     rightElbowDown(speedL);
   }
+  // Right elbow stop
+  else if (command == 'C') {
+    rightElbowUp(stop);
+  }
 
   // Left shoulder
   else if (command == 'E') {
@@ -293,13 +307,21 @@ void robotControl(char command) {
   else if (command == 'F') {
     leftShoulderDown(speedL);
   }
+  // Left shoulder stop
+  else if (command == 'L') {
+    leftShoulderUp(stop);
+  }
 
   // Right shoulder
   else if (command == 'G') {
     rightShoulderUp(speedL);
   }
   else if (command == 'H') {
-    rightShoulderUp(speedL);
+    rightShoulderDown(speedL);
+  }
+  // Right shoulder stop
+  else if (command == 'S') {
+    rightShoulderUp(stop);
   }
 }
 

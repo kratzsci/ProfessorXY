@@ -126,6 +126,11 @@ void actions() {
     Serial.println("\nStop moving robot");
     transmit = '0';
   }
+  // Stop moving head or neck when the right analog stick is in center region
+  else if (ps5.RStickX() =< -64 && ps5.RStickX() =< 64 && ps5.RStickY() =< -64 && ps5.RStickY() =< 64){
+    Serial.println("\nStop moving the head/neck");
+    transmit = 'I';
+  }
 
   // If no buttons pressed Full stop
   else{
