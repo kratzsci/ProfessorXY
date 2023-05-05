@@ -1,7 +1,7 @@
 #include <ps5Controller.h>
 bool PS5Connected = false;
 void onConnect() {
-  Serial.println("Connected.");
+  //Serial.println("Connected.");
   PS5Connected = true;
 }
 
@@ -81,32 +81,35 @@ void actions() {
   }
 
   // Analog sticks
-  else if (ps5.LStickX() > 64 && ps5.LStickY() > -90 && ps5.LStickY() < 90){
+  else if (ps5.LStickX() > 64 && ps5.LStickY() > -90 && ps5.LStickY() < 90) {
     //Serial.println("\nTurn Right");
     transmit = '3';
+
   }
-  else if (ps5.LStickX() < -64 && ps5.LStickY() > -90 && ps5.LStickY() < 90){
+  else if (ps5.LStickX() < -64 && ps5.LStickY() > -90 && ps5.LStickY() < 90) {
     //Serial.println("\nTurn Left");
     transmit = '4';
+
   }
-  else if (ps5.LStickY() > 64 && ps5.LStickX() > -90 && ps5.LStickX() < 90){
+  else if (ps5.LStickY() > 64 && ps5.LStickX() > -90 && ps5.LStickX() < 90) {
     //Serial.println("\nForward");
     transmit = '1';
+
   }
-  else if (ps5.LStickY() < -64 && ps5.LStickX() > -90 && ps5.LStickX() < 90){
+  else if (ps5.LStickY() < -64 && ps5.LStickX() > -90 && ps5.LStickX() < 90) {
     //Serial.println("\nBackward");
     transmit = '2';
+
   }
-  else{
-    //Serial.println("\nStop");
-    if(PS5Connected == true){
+  else {
+    if (PS5Connected == true) {
+      //Serial.println("\nStop");
       transmit = '0';
     }
   }
 
-  if(transmit != 'P'){
-//    //Serial.print("Transmit: ");
-//    //Serial.println(transmit);
+  if (transmit != 'P') {
+
     Serial.write(transmit);
   }
   delay(100);
@@ -116,11 +119,11 @@ void actions() {
 void setup() {
   Serial.begin(9600, SERIAL_8N1, 16, 17);
   delay(100);
-//  ps5.attach(actions);
+  //  ps5.attach(actions);
   ps5.attachOnConnect(onConnect);
   ps5.begin("a0:ab:51:bc:b8:ea"); //Current MAC address of controller
 
-  //Serial.println("Ready.");
+  Serial.println("Ready.");
   Serial.begin(9600);
 }
 
