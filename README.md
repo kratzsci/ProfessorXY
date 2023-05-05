@@ -1,6 +1,5 @@
 # Purpose
 The goal of this project was to rebuild a humanoid robot previously worked on by other graduate students at the University of North Carolina
-<<<<<<< HEAD
 at Charlotte. The robots previously ran on two 12V car batteries with 24V motors. In addition to restoring the functionality, the robot would 
 run on only one battery and the motors would be swapped to 12V equivalents. The robot was controlled with a PlayStation 3 controller which utilize
 Bluetooth to convey inputs to the Arduino controlling the actuators and motors.
@@ -39,10 +38,6 @@ Bluetooth to convey inputs to the Arduino controlling the actuators and motors.
 1. Plug in extension cord. 
 2. Turn switch to Charging position.
 3. Verify red LED on Battery Charger is on, then it is in charging mode.
-=======
-at Charlotte. The robots previously ran on two 12V car batteries with 24V motors. In addition to restoring the functionality, the robot would
-run on only one battery and the motors would be swapped to 12V equivalents. The robot was controlled with a PlayStation 3 controller which utilize
-Bluetooth to convey inputs to the Arduino controlling the actuators and motors.
 
 # Setup
 ### Get MAC address
@@ -103,7 +98,7 @@ The original robot was designed to run on 24V, utilizing two 12V car batteries. 
 The new power system was then wired in with the battery charger, to allow for easy re-charging with a simple extension cord. The 6-terminal DPDT switch was utilized to switch between standby, charging, and operating mode. The switch simply toggles whether the battery is connected to itself (standby), the charger (charging), or the components (operating). See the section entitled *Switch positions* above to see which position enables which mode.  
 
 In addition to improving the electrical aspects we ensured that the mechanical aspects of the robot are in good working order. This meant adjusting some of the struts to ensure the torso is straight and stable during operation. In addition, the wheels needed to be re-aligned to aid in straight driving and prevent the chains from jumping off the sprockets. Lastly, we ensured that all joints were aligned properly and would allow for a smooth range of motion.
->>>>>>> main
+
 
 
 # Components
@@ -118,19 +113,11 @@ In addition to improving the electrical aspects we ensured that the mechanical a
 | 6 | Pololu 18v15 motor controllers  |
 | 6 | Concentric LACT2 Actuators |
 
-<<<<<<< HEAD
-
-# Schematic
-![Schematic](/Images/Schematic.png?raw=true "Optional Title")
-
-
-=======
 
 # Schematic
 ![Schematic](/References/Schematic.png?raw=true "Optional Title")
 
 
->>>>>>> main
 # Supporting Libraries/Drivers
 1. PS3 for ESP32 library: https://www.arduinolibraries.info/libraries/ps3-controller-host  
 2. MAC address of PS3 Controller: https://drive.google.com/file/d/1REzlr4g94jwLLZkhJq9sQmbUKnL9tOMD/view  
